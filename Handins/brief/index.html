@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>COMP6059 - taes1g09</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Brief for COMP6059">
+		<meta name="author" content="taes1g09">
+
+		<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+		<link href="brief.css" rel="stylesheet">
+
+		<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+		<!--[if lt IE 9]>
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+
+		<link rel="shortcut icon" href="../assets/ico/favicon.ico">
+	</head>
+
+	<body>
+
+		<div class="container">
+
+			<div class="hero-unit">
+				<h1>Ponder</h1>
+				<h2>Thomas Smith</h2>
+				<h3>taes1g09</h3>
+			</div>
+
+			<div class="well">
+				<h2>Introduction</h2>
+			</div>
+
+			<div class="well">
+				<h2>Background</h2>
+				A moderate sized collection can run to over a thousand cards. Many players derive a lot of enjoyment from constructing effective decks out of the cards available to them, or researching new cards that would fit in their existing decks and speculating about the possible combinational effects and dependancies.
+			</div>
+
+			<div class="well">
+				<h2>Target Enterprise</h2>
+				Some [places] already offer online services related to M:tG cards, most notably the Gatherer database provided by WotC themselves. Any such service with a social component attracts a community of interested M:tG players, which may often be monetised via advertising. Alternatively, one of the many [card resellers] could benefit from integrating such a system tightly with their own retail system, in order to capture purchasing impulses during the use of the system.
+			</div>
+
+			<div class="well">
+				<h2>Rationale</h2>
+				As the sole provider of canonical data, the Gatherer database
+				the Oracle rulings, which provide errata to printed cards and ruling clarifications. The data used for this system will be sourced from the Oracle rulings, via the Yawgatog website which packages them into parseable plaintext files. Sadly there is currently no open-data endpoint for the Oracle data - one potential fringe benefit of this project would be to possibly make available a public REST endpoint for the data.
+			</div>
+
+			<div class="well">
+				<h2>User Stories</h2>
+				<p>In order to evaluate the success of the final product, here are five representative user stories. Each defines a different set of interactions with the system, and between them they necessitate provision of the majority of the planned functionality of the system.</p>
+					<div class="row-fluid">
+						<div class="well span6"><div class="heading">1 - Arrive on the site, build a deck. Sign in to save it. Examine statistics and recommendations.</div> Requirements: Must be able to find and group cards. Must be able to define deck validity requirements. Must be able to store session data without signing in. Must be able to sign in for persistent storage. Must be able to calculate and display relevant statistics.</div>
+						<div class="well span6"><div class="heading">2 - Register on the site. Search for decks fitting a certain criteria, comment on and rate them.</div></div>
+					</div>
+					<div class="row-fluid">
+						<div class="well span6"><div class="heading">3 - Login to the site. Search for, import and index card collection. Perform a trade.</div></div>
+						<div class="well span6"><div class="heading">4 - Sign in with a social network. Create a card by uploading an image, and then share it.</div></div>
+					</div>
+					<div class="row-fluid">
+						<div class="well span6"><div class="heading">5 - Import a decklist from another system, modify and then export it in plain text, without signin.</div></div>
+					</div>
+			</div>
+
+			<div class="well">
+				<h2>Database</h2>
+				Due to the nature of the data available about the cards, there are some particular challenges inherent in the course of the project. Aside from the more commonplace data structures for sessions, users and comments, additional complications are presented by the existence of low-frequency outliers such as hybrid cards, split cards and two-sided cards.  There is also a distinction between the canonical 'prototypes' of cards and the separate instances of them which are the actual owned cards. These may additionally be in a range of conditions, from mint, foiled cards to worn and heavily used.
+			</div>
+
+			<div class="well">
+				<h2>Interactive Site Map</h2>
+				Home page
+				Profile 
+				Gallery
+				Workspace
+				Library
+				Editor
+			</div>
+
+			<div class="well">
+				<h2>Implementation Schedule</h2>
+			</div>
+
+			<hr>
+
+			<footer>
+				<p>&copy; taes1g09 2012</p>
+			</footer>
+
+		</div> <!-- /container -->
+
+	</body>
+</html>

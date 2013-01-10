@@ -5,3 +5,14 @@
 .well .well {
 	background: #FFF;
 }
+
+.ref {
+	text-decoration: none;
+	font-size: xx-small; 
+	vertical-align: top;
+}
+
+h3 a {
+	text-decoration: none;
+	color: inherit;
+}

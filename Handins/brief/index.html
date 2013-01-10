@@ -7,7 +7,7 @@
 		<meta name="description" content="Brief for COMP6059">
 		<meta name="author" content="taes1g09">
 
-		<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+		<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap.min.css" rel="stylesheet">
 		<link href="brief.css" rel="stylesheet">
 
 		<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -22,55 +22,61 @@
 
 		<div class="container">
 
-			<div class="hero-unit">
+			<div class="well hero-unit row-fluid">
 				<h1>Ponder</h1>
 				<h2>Thomas Smith</h2>
-				<h3>taes1g09</h3>
+				<h3><a href="mailto:taes1g09@ecs.soton.ac.uk">taes1g09</a></h3>
 			</div>
 
-			<div class="well">
+			<div class="well row-fluid">
 				<h2>Introduction</h2>
+				<p>Magic: the Gathering<a href="http://en.wikipedia.org/wiki/Magic:_The_Gathering" class="ref">[1]</a> (M:tG) is a popular collectible trading card game produced by Wizards of the Coast (WotC). Players collect libaries of cards with various in-game properties, and then constructs decks of cards in order to compete in games and tournaments. Decks for different formats of games follow different specifications for validity, and the cards themselves are incredibly varied - as of writing, there are upwards of 15,000 unique types.</p>
+				<p>An open problem among M:tG players is the difficulty of keeping a card collection indexed and organised, and still being able to use it to construct new and better decks. A small number of online services currently attempt to solve the problem of deckbuilding and researching new cards, but there is currently no service that supports library indexing and interactive deckbuilding.</p>
 			</div>
 
-			<div class="well">
-				<h2>Background</h2>
-				A moderate sized collection can run to over a thousand cards. Many players derive a lot of enjoyment from constructing effective decks out of the cards available to them, or researching new cards that would fit in their existing decks and speculating about the possible combinational effects and dependancies.
+			<div class="well row-fluid">
+				<div class="span9">
+					<h2>Background</h2>
+					A moderate sized collection can run to over a thousand cards. Many players derive a lot of enjoyment from constructing effective decks out of the cards available to them, or researching new cards that would fit in their existing decks and speculating about the possible combinational effects and dependancies.
+				</div>
+				<img src="dragon.jpeg" class="span3" />
 			</div>
 
-			<div class="well">
+			<div class="well row-fluid">
 				<h2>Target Enterprise</h2>
-				Some [places] already offer online services related to M:tG cards, most notably the Gatherer database provided by WotC themselves. Any such service with a social component attracts a community of interested M:tG players, which may often be monetised via advertising. Alternatively, one of the many [card resellers] could benefit from integrating such a system tightly with their own retail system, in order to capture purchasing impulses during the use of the system.
+				Some websites already offer online services related to M:tG cards, most notably the Gatherer database provided by WotC themselves. Any such service with a social component attracts a community of interested M:tG players, which may often be monetised via advertising. Alternatively, one of the many [card resellers] could benefit from integrating such a system tightly with their own retail system, in order to capture purchasing impulses during the use of the system.
 			</div>
 
-			<div class="well">
+			<div class="well row-fluid">
 				<h2>Rationale</h2>
 				As the sole provider of canonical data, the Gatherer database
 				the Oracle rulings, which provide errata to printed cards and ruling clarifications. The data used for this system will be sourced from the Oracle rulings, via the Yawgatog website which packages them into parseable plaintext files. Sadly there is currently no open-data endpoint for the Oracle data - one potential fringe benefit of this project would be to possibly make available a public REST endpoint for the data.
 			</div>
 
-			<div class="well">
+			<div class="well row-fluid">
 				<h2>User Stories</h2>
 				<p>In order to evaluate the success of the final product, here are five representative user stories. Each defines a different set of interactions with the system, and between them they necessitate provision of the majority of the planned functionality of the system.</p>
 					<div class="row-fluid">
-						<div class="well span6"><div class="heading">1 - Arrive on the site, build a deck. Sign in to save it. Examine statistics and recommendations.</div> Requirements: Must be able to find and group cards. Must be able to define deck validity requirements. Must be able to store session data without signing in. Must be able to sign in for persistent storage. Must be able to calculate and display relevant statistics.</div>
-						<div class="well span6"><div class="heading">2 - Register on the site. Search for decks fitting a certain criteria, comment on and rate them.</div></div>
+						<div class="well span6"><div class="heading">1 - Arrive on the site, build a deck. Sign in to save it. Examine statistics and recommendations.</div> Requirements: Must be able to find and group cards. Must be able to define deck validity requirements. Must be able to store session data without signing in. Must be able to sign in for persistent storage. Must be able to calculate relevant statistics.</div>
+						<div class="well span6"><div class="heading">2 - Register on the site. Search for decks fitting certain criteria, comment on and rate them.</div> Requirements: Must be able to register a user account with the site. Must be able to search existing decks. Must be able to leave public comments on decks. Must be able to publically rate decks.</div>
 					</div>
 					<div class="row-fluid">
-						<div class="well span6"><div class="heading">3 - Login to the site. Search for, import and index card collection. Perform a trade.</div></div>
-						<div class="well span6"><div class="heading">4 - Sign in with a social network. Create a card by uploading an image, and then share it.</div></div>
+						<div class="well span6"><div class="heading">3 - Login to the site. Search for, import and index card collection. Perform a trade.</div> Requirements: Must be able to log in to a previously registered account. Must be able to seach for cards. Must be able to add cards to a collection. Must be able to import lists of cards. Must be able to execute trades on collections.</div>
+						<div class="well span6"><div class="heading">4 - Sign in with a social network. Create a card by uploading an image, and then share it.</div> Requirements: Must be able to sign onto the site using a social networking account. Must be able to create custom cards. Must be able to upload images to the site. Must be able to save custom cards. Must be able to share custom cards with social network.</div>
 					</div>
 					<div class="row-fluid">
-						<div class="well span6"><div class="heading">5 - Import a decklist from another system, modify and then export it in plain text, without signin.</div></div>
+						<div class="well span6"><div class="heading">5 - Import a decklist from another system, modify and then export it in plain text, without signin.</div>Requirements: Must be able to use all portions of the site without signing in. Must be able to import decklists in existing formats, including XML. Must be able to modify existing collections. Must be able to export decklists in common formats, including XML.</div>
 					</div>
 			</div>
 
-			<div class="well">
+			<div class="well row-fluid">
 				<h2>Database</h2>
 				Due to the nature of the data available about the cards, there are some particular challenges inherent in the course of the project. Aside from the more commonplace data structures for sessions, users and comments, additional complications are presented by the existence of low-frequency outliers such as hybrid cards, split cards and two-sided cards.  There is also a distinction between the canonical 'prototypes' of cards and the separate instances of them which are the actual owned cards. These may additionally be in a range of conditions, from mint, foiled cards to worn and heavily used.
+				<img src="data.png">
 			</div>
 
-			<div class="well">
-				<h2>Interactive Site Map</h2>
+			<div class="well row-fluid">
+				<h2>Site Map</h2>
 				Home page
 				Profile 
 				Gallery
@@ -79,8 +85,30 @@
 				Editor
 			</div>
 
-			<div class="well">
+			<div class="well row-fluid">
 				<h2>Implementation Schedule</h2>
+				Some work has already been done on researching data formats, suitable libraries and technologies for the project. Due to other time commitments, concerted work on the sytem is unlikely to be started before mid-December, however after that it will probably follow this rough schedule:
+				<ul>
+					<li>
+						Server-side setup: Automatic ORM and database setup using RedBean.php.
+					</li>
+					<li>
+						API setup: REST interface using Slim.php.
+					</li>
+					<li>
+						Client-side data management: Collections, transactions and events using Backbone.js
+					</li>
+					<li>
+						Client-side interface: Automatically generated views using Backbone.js. Page templating using Underscore.js.
+					</li>
+					<li>
+						Client-side presentation: Visual presentation using Bootstrap.js and css from Less.js.
+					</li>
+					<li>
+						Additional functionality: Social network signin, recommendations and 'juice'.
+					</li>
+				</ul>
+				After each major feature is implemented, there will be a brief period of live regression testing - and after each section listed above, more detailed testing will be performed to ensure that the system is still fit for purpose. Additionally, unit testing will be used for the specific sections of the system that are likely to need it.
 			</div>
 
 			<hr>

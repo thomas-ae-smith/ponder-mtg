@@ -1,0 +1,17 @@
+I have used the following libraries:
+Client-side:
+Backbone.js - data management
+Backbone-Marionette.js - view management and templating
+Underscore.js - utilities and templates for Marionette
+JSON2.js - data utilities for Marionette
+Facebook JavaScript SDK - Fb login
+Bootstrap.js - presentation utilities
+Bootstrap.css - sane defaults and presentation
+
+Server-side:
+Slim.php - RESTful routing
+Redbean.php - ORM and database interface
+json-prettifier.php - JSON data output for RedBean
+Facebook php SDK - Fb login and helper functions
+
+I have also used the Oracle dataset from yawgatog.com/resources/oracle/ , with permission.

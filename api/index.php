@@ -5,9 +5,17 @@ require_once '../lib/rb.php';
 
 require_once '../lib/facebook/facebook.php';
 
+require_once '../lib/json-prettifier.php';
+
+function output_json($content) {
+	header("Content-Type: application/json");
+	echo json_format(json_encode($content));
+	exit;
+};
+
 $fbconfig = array(
-	'appId' => '424893924242103',
-	'secret' => 'c648259db9304f6cc5abb49bedafa070',
+	'appId' => '249511971845829',
+	'secret' => '8fd801aa915be415dd31a82a5a911f47',
 	'fileUpload' => 'false'
 );
 

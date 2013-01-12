@@ -193,7 +193,7 @@ $app->get('/construct/cards(/)', function() use ($app, $card_file) {
 					$card = R::dispense('card');
 					break;
 				}
-				$rules[] = $val;
+				$rules[] = trim($val);
 				break;
 
 			case 'invalid':	//for dealing with split cards

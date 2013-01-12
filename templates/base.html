@@ -1,0 +1,75 @@
+<script id="template-header" type="text/template">
+			Ponder
+		</script>
+		<script id="template-footer" type="text/template">
+			<span>&copy; taes1g09</span>
+		</script>
+		<script id="template-navbar" type="text/template">
+			<ul id="nav-list"></ul><span>login here</span>
+		</script>
+		<!-- move this to home.html later -->
+		<script id="template-home" type="text/template">
+			<div><h3>Intro to ponder</h3>
+			Ponder is Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			<ul id="news-list"></ul>
+		</script>
+		<!-- move this to library.html later -->
+		<script id="template-library" type="text/template">
+			<h3>Library for ponder</h3>
+			Cards (15):
+			<ul id="card-list"></ul>
+		</script>
+		<script id="template-library-search" type="text/template">
+			<h3>Search for ponder</h3>
+			<form class="form-search">
+				<div class="input-append">
+					<input type="text" id="input" autofocus>
+					<button type="button" id="search" class="btn" >Go!</button>
+				</div>
+			</form>
+			<ul id="card-list" class="collapse"></ul>
+		</script>
+		<script id="template-library-cardItemView" type="text/template">
+			<span id="cost" class="pull-right"><% print(cost? cost : '-') %></span>
+			<span id="name"><%= name %></span>
+			<div class="collapse card<%= id %>">
+				<hr>
+				<% (pt)? print('<div class="pull-right">' + pt + "</div>"): '' %>
+				<div id="types"><% print(types.join(' '))%></div>
+				<% (rules)? print('<div>' + rules + "</div>"): '' %>
+			</div>
+		</script>
+		<script id="template-library-loading" type="text/template">Loading cards...</script>
+
+		<!-- move this to workspace.html later -->
+		<script id="template-workspace" type="text/template">
+			<div id="sidebar" class="span4 well"></div>
+			<div id="cancas" class=""></div>
+		</script>
+		<script id="template-workspace-search" type="text/template">
+			<h3>Search for ponder</h3>
+			<form class="form-search">
+				<div class="input-append">
+					<input type="text" id="input" autofocus>
+					<button type="button" id="search" class="btn" >Go!</button>
+				</div>
+			</form>
+			<ul id="card-list" class="collapse"></ul>
+		</script>
+		<script id="template-workspace-cardItemView" type="text/template">
+			<span id="cost" class="pull-right"><% print(cost? cost : '-') %></span>
+			<span id="name"><%= name %></span>
+			<div class="collapse card<%= id %>">
+				<hr>
+				<% (pt)? print('<div class="pull-right">' + pt + "</div>"): '' %>
+				<div id="types"><% print(types.join(' '))%></div>
+				<% (rules)? print('<div>' + rules + "</div>"): '' %>
+			</div>
+		</script>
+		<script id="template-workspace-loading" type="text/template">Loading cards...</script>
+

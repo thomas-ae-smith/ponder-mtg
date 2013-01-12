@@ -1,0 +1,12 @@
+./api/resources
+./backbone_marionette
+./Handins
+./lib
+./phpmyadmin
+./cloc-exclude
+./cloc.sh
+./cloc.pl
+./.DS_Store
+./.hgignore
+./.hg
+./attribution.txt

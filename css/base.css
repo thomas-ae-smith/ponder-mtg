@@ -1,0 +1,17 @@
+.card {
+	margin: 3px 0px;
+	padding: 5px;
+	border: 2px solid black;
+	list-style-type: none;
+	/*width : 250px;*/
+	background-color: gray;
+
+}
+
+#card-list {
+	margin: 0px;
+}
+
+hr {
+	margin: 5px 20px;
+}

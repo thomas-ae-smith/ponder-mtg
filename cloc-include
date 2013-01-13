@@ -2,6 +2,7 @@
 ./api/models/cards.php
 ./api/models/construct.php
 ./api/models/decks.php
+./api/models/news.php
 ./api/models/users.php
 ./channel.php
 ./css/base.css

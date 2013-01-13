@@ -4,7 +4,7 @@
 	border: 2px solid black;
 	list-style-type: none;
 	/*width : 250px;*/
-	background-color: gray;
+	background-color: lightgray;
 	font-family: 'Droid Serif', serif;
 }
 
@@ -16,6 +16,8 @@
 	margin: 0px;
 }
 
-hr {
-	margin: 5px 20px;
+.card hr {
+	margin: 5px 15px;
+	height: 2px;
+	border: 0;
 }

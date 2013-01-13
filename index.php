@@ -14,16 +14,14 @@ $scripts = array_merge(array('js/Ponder.js'), glob("js/*.*.js"));
 		foreach (array_merge($libs, $scripts) as $script) { echo '
 	<script type="text/javascript" src="' . $script . '"></script>'; } ?>
 </head> <body>
-	<div class="container">
 	<div id="fb-root"></div>
-	<div id="header" class="hero-unit"></div>
+	<a href='/'><div id="header"></div></a>
 	<hr>
-	<div id="navbar" class="nav"></div>
+	<div id="navbar" class="nav container"></div>
 	<hr>
 	<div id="main"></div>
 	<hr>
-	<footer id="footer"></footer>
-</div>
+	<footer id="footer" class="container"></footer>
 	<div id="templates">
 		<?php $paths = glob(__DIR__ . "/templates/*.html"); foreach ($paths as $filename) { include $filename; } ?>
 	</div>

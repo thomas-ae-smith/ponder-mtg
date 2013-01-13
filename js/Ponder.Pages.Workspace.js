@@ -182,13 +182,12 @@ Ponder.module('Pages.Workspace', function(Workspace, App, Backbone, Marionette, 
 		emptyView : Workspace.LoadingView,
 		collection : new Workspace.Group(),
 		model : new Workspace.Deck(),
+		ui : { viewName : '#viewName', editName : '#editName' },
 		events : {
-			'click #save' : 'triggerSave'
-		},
-		initialize : function() {
-			this.model.set({'cards' : this.collection });
-			this.bindTo(App.vent, 'search:add', this.addCard, this);
-			this.bindTo(this.model, 'change', this.render, this);
+			'click #save' : 'triggerSave',
+			'mouseover #viewname' : 'toggleEdit',
+			'blur #editName' : 'toggleEdit',
+			'keypress #editName' : 'onInputKeypress'
 		},
 		addCard : function(card) {
 			console.log(this.collection);
@@ -204,11 +203,35 @@ Ponder.module('Pages.Workspace', function(Workspace, App, Backbone, Marionette, 
 			}
 
 			console.log("sending", this.model);
+			this.model.set({'name' : this.ui.editName.val().trim()});
 			this.model.save(this.model,{ success : function(model, response, options) {
 				console.log("success", model, response, options);
 			}, error : function(model, xhr, options) {
 				console.log("error", model, xhr, options);
 			} } );
+		},
+		onInputKeypress : function(e) {
+			if ( e.which === 13 ) {	//ENTER_KEY
+				e.preventDefault();
+				this.toggleEdit();
+		}	},
+		toggleEdit : function() {
+			console.log('togglin\'');
+			// this.model.set({'name' : this.ui.editName.val()});
+			$('#viewName').val($('#editName').val());
+			$('#viewName').toggleClass('hidden');
+			$('#editName').toggleClass('hidden');
+		},
+		initialize : function() {
+			this.model.set({'cards' : this.collection });
+			this.bindTo(App.vent, 'search:add', this.addCard, this);
+			this.bindTo(this.model, 'change', this.render, this);
+		},
+		onRender : function() {
+			console.log('rendered workspace');
+			$('#viewName').click(this.toggleEdit);
+			$('#editName').blur(this.toggleEdit);
+			$('#editName').keypress(this.onInputKeypress);
 		}
 	});
 

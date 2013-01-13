@@ -12,7 +12,11 @@ Ponder.addRegions({
 // })
 
 Ponder.vent.on("routing:started", function(){
-	if (!Backbone.History.started) Backbone.history.start();
+	console.log("routing has started");
+	// if (!Backbone.History.started) 
+		Backbone.history.start();
+		Backbone.history.navigate('home', true);
+
 });
 
 

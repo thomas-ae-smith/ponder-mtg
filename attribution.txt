@@ -8,6 +8,10 @@ Facebook JavaScript SDK - Fb login
 Bootstrap.js - presentation utilities
 Bootstrap.css - sane defaults and presentation
 
+The following services are accessed remotely:
+Google Web Fonts API
+Facebook Open Data Graph API
+
 Server-side:
 Slim.php - RESTful routing
 Redbean.php - ORM and database interface

@@ -18,7 +18,7 @@ $scripts = array_merge(array('js/Ponder.js'), glob("js/*.*.js"));
 	<div id="fb-root"></div>
 	<div id="header" class="hero-unit"></div>
 	<hr>
-	<div id="navbar"></div>
+	<div id="navbar" class="nav"></div>
 	<hr>
 	<div id="main"></div>
 	<hr>

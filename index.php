@@ -1,7 +1,7 @@
 <?php
 // We get PHP to load our dependancies
 $styles = array('lib/bootstrap.min.css', 'css/base.css');
-$libs = array('lib/jquery-1.8.3.min.js', 'lib/underscore.js', 'lib/backbone.js', 'lib/bootstrap.min.js', 'lib/backbone.marionette.min.js', 'lib/json2.js');
+$libs = array('lib/jquery-1.8.3.min.js', 'lib/underscore.js', 'lib/backbone.js', 'lib/bootstrap.min.js', 'lib/backbone.marionette.js', 'lib/json2.js', 'http://connect.facebook.net/en_US/all.js');
 $scripts = array_merge(array('js/Ponder.js'), glob("js/*.*.js"));
 
 ?><!DOCTYPE html>

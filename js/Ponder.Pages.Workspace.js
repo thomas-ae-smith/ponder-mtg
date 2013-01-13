@@ -22,6 +22,32 @@ Ponder.module('Pages.Workspace', function(Workspace, App, Backbone, Marionette, 
 	Workspace.CardItemView = Marionette.ItemView.extend({
 		tagName : 'li',
 		template : '#template-workspace-cardItemView',
+		templateHelpers : {
+			getCMC : function(cost) {
+				var cmc = 0;
+				for (var i = 0; i < cost.length; i++) {
+					switch (cost[i]) {
+						case 'X': break;
+						case 'W': case 'U': case 'B': case 'R': case 'G': case 'S': cmc += 1; break;
+						case '(': cmc += (cost[i+1] == '2')? 2 : 1; i += 4; break;
+						default: cmc += (isNaN(cost[i+1]))? cost[i]*1 : (cost[i]*10) + cost[i+1]*1;
+					}
+				};
+				return cmc;
+			},
+			renderMana : function(cost) {
+				function img(code) { return "<img src=\"\/img\/Mana" + code + ".gif\">"; }
+				var tags = '';
+				for (var i = 0; i < cost.length; i++) {
+					switch (cost[i]) {
+						case 'X': case 'W': case 'U': case 'B': case 'R': case 'G': case 'S': tags += img(cost[i].toLowerCase()); break;
+						case '(': tags += img(cost[i+1] + cost[i+3]); i += 4; break;
+						default: tags += (isNaN(cost[i+1]))? img(cost[i]) : img((cost[i]*10) + cost[i+1]*1);
+					}
+				};
+				return tags;
+			}
+		},
 		className : 'card',
 		// UI bindings create cached attributes that
 		// point to jQuery selected objects
@@ -33,6 +59,7 @@ Ponder.module('Pages.Workspace', function(Workspace, App, Backbone, Marionette, 
 		},
 
 		onClick : function() {
+			App.vent.trigger('search:add', this.model);
 			this.ui.collapse.collapse('toggle');
 		},
 
@@ -64,6 +91,21 @@ Ponder.module('Pages.Workspace', function(Workspace, App, Backbone, Marionette, 
 		},
 		onRender : function() {
 			this.sidebar.show(new Workspace.Search());
+			this.canvas.show(new Workspace.Canvas());
+		}
+	});
+
+	Workspace.Canvas = Backbone.Marionette.CompositeView.extend({
+		template : '#template-workspace-canvas',
+		itemView : Workspace.CardItemView,
+		itemViewContainer : '#card-area',
+		emptyView : Workspace.LoadingView,
+		collection : new Workspace.Group(),
+		initialize : function() {
+			this.bindTo(App.vent, 'search:add', this.addCard, this);
+		},
+		addCard : function(card) {
+			this.collection.add(card);
 		}
 	});
 

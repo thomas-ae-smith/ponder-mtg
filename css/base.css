@@ -5,7 +5,11 @@
 	list-style-type: none;
 	/*width : 250px;*/
 	background-color: gray;
+	font-family: 'Droid Serif', serif;
+}
 
+.card .collapse {
+	font-family: 'Tinos', serif;
 }
 
 #card-list {

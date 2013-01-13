@@ -5,7 +5,9 @@ $libs = array('lib/jquery-1.8.3.min.js', 'lib/underscore.js', 'lib/backbone.js',
 $scripts = array_merge(array('js/Ponder.js'), glob("js/*.*.js"));
 
 ?><!DOCTYPE html>
-<html> <head> <meta charset="utf-8"> <title>Ponder</title>
+<html> <head> 
+	<link href='http://fonts.googleapis.com/css?family=Tinos|Droid+Serif:700' rel='stylesheet' type='text/css'>
+	<meta charset="utf-8"> <title>Ponder</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<?php foreach ($styles as $style) { echo '
 	<link rel="stylesheet" href="' . $style . '">'; }

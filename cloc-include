@@ -2,9 +2,12 @@
 ./api/models/cards.php
 ./api/models/construct.php
 ./api/models/users.php
+./css/base.css
 ./index.php
 ./js/Ponder.Master.js
 ./js/Ponder.Pages.Home.js
+./js/Ponder.Pages.Workspace.js
 ./js/Ponder.Pages.js
+./js/Ponder.Shared.js
 ./js/Ponder.js
 ./templates/base.html

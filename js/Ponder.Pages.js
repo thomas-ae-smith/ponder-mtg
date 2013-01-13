@@ -19,10 +19,26 @@ Ponder.module('Pages', function(Pages, App, Backbone, Marionette, $, _){
 		tagName : 'ul',
 		template : '#template-navbar',
 		// region : App.navbar,
+		ui : {
+			home : '#home',
+			lognav : '#login',
+			profile : '#profile',
+			library : '#library',
+			workspace : '#workspace',
+			gallery : '#gallery',
+			editor : '#editor'
+		},
 		events : {
-			 // 'click' : 'fbLogin'
+			 'click' : 'fbLogin',
+			 'login' : 'toggleProfile'
+		},
+		toggleProfile : function() {
+			console.log(this.ui);
+			// this.el.('#home').hide();
+			// this.ui.profile.show();
 		},
 		initialize : function() {
+			App.vent.on('login', this.toggleProfile);
 			FB.init({
 				appId      : '249511971845829', // App ID from the App Dashboard
 				channelUrl : '//'+window.location.hostname+'/channel.php', // Channel File for x-domain communication
@@ -32,6 +48,7 @@ Ponder.module('Pages', function(Pages, App, Backbone, Marionette, $, _){
 			});
 			FB.getLoginStatus(function(response) {
 				if (response.status === 'connected') {
+					App.vent.trigger('login');
 					console.log('connected');
 				} else if (response.status === 'not_authorized') {
 					console.log('not_authorized');
@@ -44,12 +61,13 @@ Ponder.module('Pages', function(Pages, App, Backbone, Marionette, $, _){
 		fbLogin : function() {
 			FB.login(function(response) {
 				if (response.authResponse) {
-					(function testAPI() {
-						console.log('Welcome!  Fetching your information.... ');
-						FB.api('/me', function(response) {
-							console.log('Good to see you, ' + response.name + '.');
-						});
-					}());
+					App.vent.trigger('login');
+					// (function testAPI() {
+					// 	console.log('Welcome!  Fetching your information.... ');
+					// 	FB.api('/me', function(response) {
+					// 		console.log('Good to see you, ' + response.name + '.');
+					// 	});
+					// }());
 				} else {
 					// cancelled
 				}

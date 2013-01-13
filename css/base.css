@@ -1,17 +1,28 @@
-#navbar li {
+.hero-unit {
+	background-image: url('../img/ponder.jpg');
+	width: 500px;
+	margin: 0 auto;
+}
+
+.nav li {
 	list-style-type: none;
 	display: inline;
 	text-transform: uppercase;
-	margin: 0 12px; 
+	margin: 0 2px;
+}
+#navbar li {
+	margin: 0 22px;
 }
 
-#navbar { text-align: center; margin: 24px auto; position: relative; }
+.nav ul { margin-left: 0px; margin-bottom: 0px;}
+.nav { text-align: center; margin: 0px auto 12px auto; position: relative; /*border: 1px solid black; */}
+#navbar { margin: 24px auto;}
 
 #navbar::before { 
 	content: "";
     position: absolute;
     left: -105px;
-    top: 13px;
+    top: 10px;
     height: 1px;
     width: 180px;
 	background: #000;
@@ -27,7 +38,7 @@
 	content: "";
     position: absolute;
     right: -105px;
-    top: 13px;
+    top: 10px;
     height: 1px;
     width: 180px;
 	background: #000;
@@ -40,12 +51,12 @@
 	}
 
 
-#navbar ul li a { 
+ul li a { 
 	font-weight: 600;
 	text-transform: uppercase;
 	text-decoration: none;
 	letter-spacing: .175em;
-	margin: 0 12px;
+	margin: 0 2px;
 	color: #444;
 	-webkit-transition: .12s linear;
 	   -moz-transition: .12s linear;

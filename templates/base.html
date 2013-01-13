@@ -54,20 +54,22 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
 		<!-- move this to workspace.html later -->
 		<script id="template-workspace" type="text/template">
-			<div id="sidebar" class="span4 well"></div>
+			<div class="span4 well"><div class=nav><ul><li id="searchTab"><a>Search</a></li>|<li id="sideboardTab"><a>Sideboard</a></li>|<li id="statsTab"><a>Stats</a></li></ul>
+			</div><div id="sidebar"></div></div>
 			<div id="canvas" class="span8"></div>
 		</script>
 		<script id="template-workspace-search" type="text/template">
 			<form class="form-search">
 				<div class="input-append">
-					<input type="text" id="input" autofocus>
+					<input type="text" id="input" value="queen" autofocus>
 					<button type="button" id="search" class="btn" >Go!</button>
 				</div>
 			</form>
 			<ul id="card-list" class="collapse"></ul>
 		</script>
 		<script id="template-workspace-canvas" type="text/template">
-			<h3>Canvas</h3>
+			<button type="button" id="save" class="btn pull-right">Save</button>
+			<div id="deckName"><h3 id="viewName"><%= name %></h3><input type="text" id="editName" value="<%= name %>"></div>
 			<ul id="card-area"></ul>
 		</script>
 		<script id="template-workspace-cardItemView" type="text/template">

@@ -52,10 +52,37 @@ Ponder.module('Pages.Workspace', function(Workspace, App, Backbone, Marionette, 
 	Workspace.Group = Backbone.Collection.extend({
 		model : Workspace.Card,
 		url : '/api/cards',
+		toJSON : function() {
+			return this.map(function(model){ return { 'name' : model.get("name"), 'id' : model.get("id") }; });
+		}
 		// initialize : function() {
 		// 	this.fetch();
 		// }
 	});
+
+	Workspace.Deck = Backbone.Model.extend({
+		defaults : {
+			name : 'New Deck',
+			owner : 'Anonymous',
+			// cards : new Workspace.Group(),
+			cards : {},
+			sideboard : new Workspace.Group(),
+		},
+		url : function() { console.log('/api/decks/' + ( this.get('id') || '' ));
+			return '/api/decks/' + ( this.get('id') || '' ); },
+		initialize : function() {
+			// this.get('sideboard').wrapper = this.get('cards').wrapper = this;
+		},
+		parse : function(resp) {
+			console.log(resp);
+			if (resp && resp['cards']) {
+				console.log("found cards");
+				this.get('cards').add(resp['cards']);
+				delete resp.cards;
+			}
+			return resp;
+		},
+	})
 
 
 	Workspace.CardItemView = Marionette.ItemView.extend({
@@ -91,7 +118,6 @@ Ponder.module('Pages.Workspace', function(Workspace, App, Backbone, Marionette, 
 			})
 			var ci = this.model.get('ci');
 			var types = this.model.get('types');
-			console.log(types);
 			if ($.inArray('Land', types) > -1) {
 				var rules = this.model.get('rules');
 				ci += ($.inArray('Plains', types) > -1 || rules.indexOf('{W}') > -1)? 'W' : '';
@@ -100,8 +126,6 @@ Ponder.module('Pages.Workspace', function(Workspace, App, Backbone, Marionette, 
 				ci += ($.inArray('Mountain', types) > -1 || rules.indexOf('{R}') > -1)? 'R' : '';
 				ci += ($.inArray('Forest', types) > -1 || rules.indexOf('{G}') > -1)? 'G' : '';
 			}
-			console.log(ci);
-			// card.css({'background-color' : colours[ci.toLowerCase()]});
 			switch (ci.length) {
 				case 1:
 					card.css({'background-color' : colours[ci.toLowerCase()]});
@@ -157,11 +181,34 @@ Ponder.module('Pages.Workspace', function(Workspace, App, Backbone, Marionette, 
 		itemViewContainer : '#card-area',
 		emptyView : Workspace.LoadingView,
 		collection : new Workspace.Group(),
+		model : new Workspace.Deck(),
+		events : {
+			'click #save' : 'triggerSave'
+		},
 		initialize : function() {
+			this.model.set({'cards' : this.collection });
 			this.bindTo(App.vent, 'search:add', this.addCard, this);
+			this.bindTo(this.model, 'change', this.render, this);
 		},
 		addCard : function(card) {
+			console.log(this.collection);
+			console.log(this.model.get('cards'));
 			this.collection.add(card);
+		},
+		triggerSave : function() {
+			if (this.model.get('id') != 5) {
+			console.log(this.model.get('id'));
+				this.model.set({'id' : 5});
+				this.model.fetch();
+				return;
+			}
+
+			console.log("sending", this.model);
+			this.model.save(this.model,{ success : function(model, response, options) {
+				console.log("success", model, response, options);
+			}, error : function(model, xhr, options) {
+				console.log("error", model, xhr, options);
+			} } );
 		}
 	});
 
@@ -194,7 +241,7 @@ Ponder.module('Pages.Workspace', function(Workspace, App, Backbone, Marionette, 
 			if ( searchText && searchText.length > 2 ) {
 				this.collection.url = '/api/cards/search/' + searchText;
 				this.collection.fetch();
-				this.ui.list.collapse('show');
+				if (!this.ui.list.hasClass('in')) this.ui.list.collapse('show');
 			}
 			
 		}

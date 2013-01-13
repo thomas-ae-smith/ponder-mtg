@@ -1,6 +1,6 @@
-Ponder.module('Pages.Library', function(Library, App, Backbone, Marionette, $, _){
+Ponder.module('Shared', function(Shared, App, Backbone, Marionette, $, _){
 
-	Library.Card = Backbone.Model.extend({
+	Shared.Card = Backbone.Model.extend({
 		defaults : {
 			name : '',
 			types : [],
@@ -10,8 +10,8 @@ Ponder.module('Pages.Library', function(Library, App, Backbone, Marionette, $, _
 		}
 	});
 
-	Library.Group = Backbone.Collection.extend({
-		model : Library.Card,
+	Shared.Group = Backbone.Collection.extend({
+		model : Shared.Card,
 		url : '/api/cards',
 		// initialize : function() {
 		// 	this.fetch();
@@ -19,9 +19,9 @@ Ponder.module('Pages.Library', function(Library, App, Backbone, Marionette, $, _
 	});
 
 
-	Library.CardItemView = Marionette.ItemView.extend({
+	Shared.CardItemView = Marionette.ItemView.extend({
 		tagName : 'li',
-		template : '#template-library-cardItemView',
+		template : '#template-Shared-cardItemView',
 		className : 'card',
 		// UI bindings create cached attributes that
 		// point to jQuery selected objects
@@ -49,13 +49,13 @@ Ponder.module('Pages.Library', function(Library, App, Backbone, Marionette, $, _
 
 	});
 
-	Library.LoadingView = Marionette.ItemView.extend({
-		template: "#template-library-loading"
+	Shared.LoadingView = Marionette.ItemView.extend({
+		template: "#template-Shared-loading"
 	});
 
 
-	Library.View = Backbone.Marionette.Layout.extend({
-		template : '#template-library',
+	Shared.View = Backbone.Marionette.Layout.extend({
+		template : '#template-Shared',
 		tagName : 'div',
 		regions : {
 			sidebar : "#sidebar",
@@ -63,13 +63,13 @@ Ponder.module('Pages.Library', function(Library, App, Backbone, Marionette, $, _
 		}
 	});
 
-	Library.Search = Backbone.Marionette.CompositeView.extend({
-		template : '#template-library-search',
+	Shared.Search = Backbone.Marionette.CompositeView.extend({
+		template : '#template-Shared-search',
 		tagName : 'div',
-		itemView : Library.CardItemView,
+		itemView : Shared.CardItemView,
 		itemViewContainer : '#card-list',
-		emptyView : Library.LoadingView,
-		collection : new Library.Group(),
+		emptyView : Shared.LoadingView,
+		collection : new Shared.Group(),
 		ui : {
 			input : "#input",
 			search : "#search",

@@ -49,7 +49,7 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 		<!-- move this to workspace.html later -->
 		<script id="template-workspace" type="text/template">
 			<div id="sidebar" class="span4 well"></div>
-			<div id="cancas" class=""></div>
+			<div id="canvas" class=""></div>
 		</script>
 		<script id="template-workspace-search" type="text/template">
 			<h3>Search for ponder</h3>
@@ -61,12 +61,16 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 			</form>
 			<ul id="card-list" class="collapse"></ul>
 		</script>
+		<script id="template-workspace-canvas" type="text/template">
+			<h3>Canvas</h3>
+			<ul id="card-area"></ul>
+		</script>
 		<script id="template-workspace-cardItemView" type="text/template">
-			<span id="cost" class="pull-right"><% print(cost? cost : '-') %></span>
+			<span id="cost" class="pull-right"><%= cost? renderMana(cost) : '-' %></span>
 			<span id="name"><%= name %></span>
 			<div class="collapse card<%= id %>">
 				<hr>
-				<% (pt)? print('<div class="pull-right">' + pt + "</div>"): '' %>
+				<% (pt)? print('<div class="pull-right"><strong>' + pt + "</strong></div>"): '' %>
 				<div id="types"><% print(types.join(' '))%></div>
 				<% (rules)? print('<div>' + rules + "</div>"): '' %>
 			</div>

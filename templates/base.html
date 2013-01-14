@@ -11,7 +11,7 @@
 			<li id="library"><a>Library</a></li>
 			<li id="workspace"><a>Workspace</a></li>
 			<li id="gallery"><a>Gallery</a></li>
-			<li id="editor"><a>Editor</a></li>
+			<li id="docs"><a>Docs</a></li>
 		</script>
 		<!-- move this to home.html later -->
 		<script id="template-home" type="text/template">
@@ -39,15 +39,10 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 			</ul></div>
 		</script>
 		<script id="template-home-newsItemView" type="text/template">
-			<h2><%= title %></h2><div class="pull-right clearfix"><%= timestring %></div>
-			<hr>
-			<div><%= text %></div>
-			<hr>
+			<h2><%= title %></h2><div class="pull-right clearfix"><%= timestring %></div> <hr> <div><%= text %></div><hr>
 			<strong><%= comments.length %> comment<% print((comments.length == 0)? 's.' : (comments.length == 1)? ':' : 's:') %></strong>
 			<ul id="comments-list"></ul>
-			<div class="controls-row">
-			<textarea id="textInput" class="span5" rows="4" placeholder="Leave a comment..."></textarea><button class="btn span2" id="submit">Submit Comment</button><div class="span2"><small>Other people will see you as $user.</small></div>
-			</div>
+			<div class="controls-row"><textarea id="textInput" class="span5" rows="4" placeholder="Leave a comment..."></textarea><button class="btn span2" id="submit">Submit Comment</button><div class="span2"><small>Other people will see you as $user.</small></div></div>
 		</script>
 		<script id="template-home-newsItemCompactView" type="text/template">
 			<span class="pull-right"><%= timestring %></span><strong><%= title %></strong>
@@ -58,51 +53,32 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 		<a href="#"><strong><%= title %></strong><span class="pull-right">( <%= comments.length %> comments)</span></a>
 		</script>
 		<script id="template-home-comment" type="text/template">
-		<div><%= comment %>
-		<div style="text-align: right"><strong><%= author.name %></strong> at <%= timestring %></div>
-		</div>
+		<div><%= comment %><div style="text-align: right"><strong><%= author.name %></strong> at <%= timestring %></div></div>
 		</script>
 		<!-- move this to library.html later -->
 		<script id="template-library" type="text/template">
-			<h3>Library for ponder</h3>
-			Cards (15):
-			<ul id="card-list"></ul>
+			<h3>Library for ponder</h3> Cards (15): <ul id="card-list"></ul>
 		</script>
 		<script id="template-library-search" type="text/template">
 			<h3>Search for ponder</h3>
-			<form class="form-search">
-				<div class="input-append">
-					<input type="text" id="input" autofocus>
-					<button type="button" id="search" class="btn" >Go!</button>
-				</div>
-			</form>
+			<form class="form-search"><div class="input-append"><input type="text" id="input" autofocus><button type="button" id="search" class="btn" >Go!</button></div></form>
 			<ul id="card-list" class="collapse"></ul>
 		</script>
 		<script id="template-library-cardItemView" type="text/template">
-			<span id="cost" class="pull-right"><% print(cost? cost : '-') %></span>
-			<span id="name"><%= name %></span>
+			<span id="cost" class="pull-right"><% print(cost? cost : '-') %></span><span id="name"><%= name %></span>
 			<div class="collapse card<%= id %>">
-				<hr>
-				<% (pt)? print('<div class="pull-right">' + pt + "</div>"): '' %>
-				<div id="types"><% print(types.join(' '))%></div>
-				<% (rules)? print('<div>' + rules + "</div>"): '' %>
+				<hr><% (pt)? print('<div class="pull-right">' + pt + "</div>"): '' %><div id="types"><% print(types.join(' '))%></div><% (rules)? print('<div>' + rules + "</div>"): '' %>
 			</div>
 		</script>
 		<script id="template-library-loading" type="text/template">Loading cards...</script>
 
 		<!-- move this to workspace.html later -->
 		<script id="template-workspace" type="text/template">
-			<div class="span4 well" id="searchpane"><div class=nav><ul><li id="searchTab"><a>Search</a></li>|<li id="sideboardTab"><a>Sideboard</a></li>|<li id="statsTab"><a>Stats</a></li></ul>
-			</div><div id="sidebar"></div></div>
+			<div class="span4 well" id="searchpane"><div class=nav><ul><li id="searchTab"><a>Search</a></li>|<li id="sideboardTab"><a>Sideboard</a></li>|<li id="statsTab"><a>Stats</a></li></ul></div><div id="sidebar"></div></div>
 			<div id="canvas" class="span8"></div>
 		</script>
 		<script id="template-workspace-search" type="text/template">
-			<form class="form-search">
-				<div class="input-append">
-					<input type="text" id="input" value="queen" autofocus>
-					<button type="button" id="search" class="btn" >Go!</button>
-				</div>
-			</form>
+			<form class="form-search"><div class="input-append"><input type="text" id="input" value="queen" autofocus><button type="button" id="search" class="btn" >Go!</button></div></form>
 			<ul id="card-list" class="collapse"></ul>
 		</script>
 		<script id="template-workspace-canvas" type="text/template">
@@ -114,11 +90,8 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 			<span id="cost" class="pull-right"><%= cost? mana : '-' %></span>
 			<span id="name"><%= name %></span>
 			<div class="collapse card<%= id %>">
-				<hr>
-				<% (pt)? print('<div class="pull-right"><strong>' + pt + "</strong></div>"): '' %>
-				<div id="types"><% print(types.join(' '))%></div>
-				<% (rules)? print('<div>' + rules + "</div>"): '' %>
+				<hr><% (pt)? print('<div class="pull-right"><strong>' + pt + "</strong></div>"): '' %><div id="types"><% print(types.join(' '))%></div><% (rules)? print('<div>' + rules + "</div>"): '' %>
 			</div>
 		</script>
-		<script id="template-workspace-loading" type="text/template">Loading cards...</script>
+		<script id="template-workspace-loading" type="text/template">No cards in this deck yet.<br>Search for some in the sidebar on the left.</script>
 

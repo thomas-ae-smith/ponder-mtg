@@ -4,10 +4,10 @@
 ./api/models/decks.php
 ./api/models/news.php
 ./api/models/users.php
-./channel.php
 ./css/base.css
 ./index.php
 ./js/Ponder.Master.js
+./js/Ponder.Pages.Docs.js
 ./js/Ponder.Pages.Home.js
 ./js/Ponder.Pages.Library.js
 ./js/Ponder.Pages.Workspace.js

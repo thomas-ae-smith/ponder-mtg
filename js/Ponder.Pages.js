@@ -7,6 +7,7 @@ Ponder.module('Pages', function(Pages, App, Backbone, Marionette, $, _){
 			App.vent.on('route:profile', function() { $('body').animate({'margin-top' : '0px'}); });
 			App.vent.on('route:library', function() { $('body').animate({'margin-top' : '0px'}); });
 			App.vent.on('route:gallery', function() { $('body').animate({'margin-top' : '0px'}); });
+			App.vent.on('route:docs', function() { $('body').animate({'margin-top' : '0px'}); });
 			App.vent.on('route:workspace', function() {
 				$('body').animate({'margin-top' : '-280px'}, function() { $('body').animate({'margin-top' : '-210px'});});
 				$('#main').addClass('expand');
@@ -28,12 +29,13 @@ Ponder.module('Pages', function(Pages, App, Backbone, Marionette, $, _){
 			library : '#library',
 			workspace : '#workspace',
 			gallery : '#gallery',
-			editor : '#editor'
+			docs : '#docs'
 		},
 		events : {
 			'click #home' : 'navHome',
 			'click #login' : 'fbLogin',
 			'click #workspace' : 'navWorkspace',
+			'click #docs' : 'navDocs',
 			'login' : 'toggleProfile',
 			'mousover #library' : 'mouseOver'
 		},
@@ -70,7 +72,8 @@ Ponder.module('Pages', function(Pages, App, Backbone, Marionette, $, _){
 		navWorkspace : function() { App.vent.trigger('route:workspace');},
 		// navWorkspace : function() { console.log('going'); Backbone.history.navigate('workspace', true); App.main.show(new Pages.Workspace.View(id));},
 		navGallery : function() { Backbone.history.navigate('gallery', true);},
-		navEditor : function() { Backbone.history.navigate('editor', true);},
+		// navDocs : function() { Backbone.history.navigate('docs', true);},
+		navDocs : function() { App.vent.trigger('route:docs');},
 		mouseOver : function() { console.log('mouse!'); }
 	});
 
@@ -90,12 +93,12 @@ Ponder.module('Pages', function(Pages, App, Backbone, Marionette, $, _){
 		});
 	};
 
-	Pages.showHome = function() { App.main.show(new Pages.Home.View()); };
-	Pages.showProfile = function() { console.log('showP');/*App.main.show(new Pages.Profile.View()); */};
-	Pages.showLibrary = function(id) { console.log('showL');App.main.show(new Pages.Library.View(id)); };
-	Pages.showWorkspace = function(id) { console.log('showW'); App.main.show(new Pages.Workspace.View(id)); };
-	Pages.showGallery = function() { console.log('showG');/*App.main.show(new Pages.Gallery.View());*/ };
-	Pages.showEditor = function() { console.log('showE');/*App.main.show(new Pages.Editor.View()); */};
+	// Pages.showHome = function() { App.main.show(new Pages.Home.View()); };
+	// Pages.showProfile = function() { console.log('showP');/*App.main.show(new Pages.Profile.View()); */};
+	// Pages.showLibrary = function(id) { console.log('showL');App.main.show(new Pages.Library.View(id)); };
+	// Pages.showWorkspace = function(id) { console.log('showW'); App.main.show(new Pages.Workspace.View(id)); };
+	// Pages.showGallery = function() { console.log('showG');/*App.main.show(new Pages.Gallery.View());*/ };
+	// Pages.showDocs = function() { console.log('showD');/*App.main.show(new Pages.Docs.View()); */};
 
 	Pages.show = function (argument) {
 		App.header.show(new Pages.Header());

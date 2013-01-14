@@ -66,12 +66,10 @@ Ponder.module('Pages.Home', function(Home, App, Backbone, Marionette, $, _){
 		initialize : function() {
 			this.collection = new Home.News();
 			this.collection.fetch({success: function(model) {console.log("fetched", model);}});
-		}
+		}, appendHtml: function(collectionView, itemView){ collectionView.$el.find(this.itemViewContainer).prepend(itemView.el); }
 	});
 
-	Home.Archives = Home.Main.extend({ template : '#template-home-archives', className : 'span3', itemView : Home.NewsItemTinyView, appendHtml: function(collectionView, itemView){
-    collectionView.$el.find(this.itemViewContainer).prepend(itemView.el);
-  }});
+	Home.Archives = Home.Main.extend({ template : '#template-home-archives', className : 'span3', itemView : Home.NewsItemTinyView, appendHtml: function(collectionView, itemView){ collectionView.$el.find(this.itemViewContainer).prepend(itemView.el); } });
 
 	Home.View = Backbone.Marionette.Layout.extend({ regions : { main : '#home-main', archives : '#home-archives'}, tagname : 'div', className : 'container', template : '#template-home', onRender : function() { this.main.show(new Home.Main()); this.archives.show(new Home.Archives()); }, initialize : function() { var that = this; App.vent.on('route:news', function(model) { console.log('heard ', that); that.main.show(new Home.NewsItemView({'model' : model})); }); } });
 

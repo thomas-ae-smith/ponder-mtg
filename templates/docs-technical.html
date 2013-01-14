@@ -1,3 +1,72 @@
 <script id="template-docs-technical" type="text/template">
-			<h1>Ponder</h1>
+			<h1>Ponder Technical Manual</h1>
+
+		<div class="well">
+			<h2>Introduction</h2>
+			<p>Ponder is essentially a prototype proof-of-concept for a web-based card management system. It would be appealing to any enterprise wishing to attract Magic: the Gathering fans, and could potentially be expanded to also support any of the many other card-based games.
+			</p></div>
+		
+		
+		<div class="well">
+			<h2>Libraries and third-party code</h2>
+			<div>
+			<p>Ponder uses a large number of third-party libraries. Each of them plays a useful role within the system, as detailed below:</p>
+				<p>Client-side:
+			<ul>
+				<li>Backbone.js - Javascript-based data management</li>
+				<li>Backbone-Marionette.js - view management and templating</li>
+				<li>Underscore.js - utilities and templates for Marionette</li>
+				<li>JSON2.js - data utilities for Marionette</li>
+				<li>Facebook JavaScript SDK - Facebook login</li>
+				<li>Bootstrap.js - presentation utilities</li>
+				<li>Bootstrap.css - sane defaults and presentation</li>
+			</ul>
+			</p>
+			</div>
+			<div>
+				<p>The following services are accessed remotely:
+				<ul><li>Google Web Fonts API - custom fonts for the cards</li>
+				<li>Facebook Open Data Graph API - information about logged-in facebook users</li></ul></p>
+			</div>
+			<div>
+				<p>Server-side:
+				<ul>
+				<li>Slim.php - RESTful routing</li>
+				<li>Redbean.php - ORM and database interface</li>
+				<li>json-prettifier.php - JSON data output for RedBean</li>
+				<li>Facebook php SDK - Fb login and helper functions</li>
+				<li>PHPMyAdmin - interface for database management</li>
+			</ul></p>
+			</div>
+
+			<p>The Oracle dataset from yawgatog.com/resources/oracle/ has been used with permission.
+		</div>
+
+		<div class="well">
+			<h2>Client</h2>
+			<p>The Ponder website itself is essentially a multi-page web app using Backbone-Marionette. Routing is all performed from the document root, which allows loaded data to persist and avoids page reloads, while still storing routes in the user's history. Data within the client is managed using Backbone's Models and Collections - even page layout is stored as data before being rendered using the Underscore templating engine.
+			</p>
+		</div>
+
+		<div class="well">
+			<h2>Server</h2>
+			<p>Ponder uses a RESTful API under the /api directory to load and store data. Slim.php is used to rewrite CRUD request routes for handling, and the RedBean.php ORM library is used to dynamically create database tables and fetch data. The main tables are Cards (with associated Blocks, Types, Editions, Rarity and Sets), Users, News (with associated Comments) and Decks (with associated Cards and Comments)
+			</p>
+		</div>
+
+		<div class="well">
+			<h2>Development Software</h2>
+			<p>The vast majority of development for this project was done in Sublime Text 2 - a highly customisable text editor and proto-IDE. It offers adjustable syntax hilighting, custom build scripts and a host of other development tools. The source code was managed using Mercurial for version control, and Bitbucket for remote repository provision. Bitbucket also provide useful development features, including bug-tracking. Code statistics were calculated using the Perl script CLOC - standard on may unix installations. Browser testing was done on a combination of Safari and Chrome. Screenshots were taken using the Mac OS X Grab utility, which offers window-level clipping automatically. (Screenshots taken this way may be found in the /img/screenshots subdirectory).
+		</p>
+		</div>
+
+		<div class="well">
+			<h2>Line count</h2>
+			<p>As of this writing, there are 998 lines of code and markup in the Ponder source directory across 17 files. This may be checked by running the cloc.sh script in the root directory. The script ignores a number of files - including itself - that were incorporated into the project unchanged. A full list can be found in the cloc-exclude file.
+			</p>
+		</div>
 		</script>
+
+<script>
+
+</script>

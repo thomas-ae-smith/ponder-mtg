@@ -128,19 +128,19 @@ Ponder.module('Pages.Workspace', function(Workspace, App, Backbone, Marionette, 
 			}
 			switch (ci.length) {
 				case 1:
-					card.css({'background-color' : colours[ci.toLowerCase()]});
+					card.css({'background-color' : colours[ci.toUpperCase()]});//TODO for the grunge
 					card.find('hr').css({'background-color' : colours[ci.toUpperCase()]});
 					break;
 				case 2:
 					if (this.model.get('hybrid')) {
 						card.css({'background' : '-webkit-gradient(linear, 0 0, 100% 0, from(' + colours[ci[0]] + '), to(' + colours[ci[1]] + '))' });
 					} else {
-						card.css({'background-color' : colours['m']});
+						card.css({'background-color' : colours['M']}); //TODO for the grunge
 					}
 					card.find('hr').css({'background' : '-webkit-gradient(linear, 0 0, 100% 0, from(' + colours[ci[0].toUpperCase()] + '), to(' + colours[ci[1].toUpperCase()] + '))'});
 					break;
 				default:
-					card.css({'background-color' : colours['m']});
+					card.css({'background-color' : colours['M']});		//TODO for th grunge
 					card.find('hr').css({'background-color' : colours['M']});
 			}
 			if ($.inArray('Artifact', types) > -1) {
@@ -148,7 +148,7 @@ Ponder.module('Pages.Workspace', function(Workspace, App, Backbone, Marionette, 
 				if (!ci) { card.find('hr').css({'background-color' : colours['b']}); };
 			}
 			if ($.inArray('Land', types) > -1) {
-				card.css({'background-color' : colours['l']});
+				card.css({'background-color' : colours['L']});
 				if (!ci) { card.find('hr').css({'background-color' : colours['L']}); };
 			}
 

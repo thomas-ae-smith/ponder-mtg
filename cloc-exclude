@@ -10,3 +10,8 @@
 ./.hgignore
 ./.hg
 ./attribution.txt
+./channel.php
+./templates/docs.html
+./templates/docs-brief.html
+./templates/docs-user.html
+./templates/docs-technical.html

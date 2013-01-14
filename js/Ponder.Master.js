@@ -24,8 +24,14 @@ Ponder.module('Master', function(Master, App, Backbone, Marionette, $, _) {
 		App.vent.on('route:home', function() {
 		 console.log('goingH'); Backbone.history.navigate('home/', true); App.main.show(new App.Pages.Home.View());
 		});
+		App.vent.on('route:news', function(model) {
+		 Backbone.history.navigate('home/news/' + ((model.id)? model.id : ''), true); 
+		 var bean = new App.Pages.Home.NewsItemView({'model' : model});
+		 console.log('goingN',model); 
+		 // App.main.show(bean);
+		});
 		App.vent.on('route:workspace', function(id) {
-		 console.log('goingW'); Backbone.history.navigate('workspace/' + ((id)? id : ''), true); App.main.show(new App.Pages.Workspace.View(id));
+		 console.log('goingW'); Backbone.history.navigate('workspace/' + ((id)? id : ''), true); App.main.show(new App.Pages.Workspace.View({'id':id}));
 		});
 
 		App.Pages.show();

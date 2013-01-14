@@ -7,16 +7,49 @@ Ponder.module('Pages.Home', function(Home, App, Backbone, Marionette, $, _){
 	Home.NewsComments = Backbone.Collection.extend({ model : Home.NewsItemComment });
 
 	//news item model
-	Home.NewsItem = Backbone.Model.extend({	defaults : { title : '', text : '', timestring: '', comments : Home.NewsComments } });
+	Home.NewsItem = Backbone.Model.extend({	defaults : { title : '', text : '', timestring: '', comments : new Home.NewsComments() }, url : function() { return '/api/news/' + ( this.get('id') || '' ); }, parse : function(resp) {
+			console.log('parsing news response',resp);
+			if (resp && resp['comments'].length) {
+				console.log("found comments");
+				this.get('comments').add(resp['comments']);
+			}
+				delete resp.comments;
+			return resp;
+		},
+
+});
 	//full view with comments
 	Home.NewsItemView = Backbone.Marionette.CompositeView.extend({
-		tagName : 'div', template : '#template-home-newsItemView', collection : Home.NewsComments, itemView : Home.NewsItemCommentView, itemViewContainer : '#comments-list', ui : { textInput : '#textInput' }, events : { 'click #submit' : 'addComment' },
+		template : '#template-home-newsItemView', 
+		tagName : 'div', 
+		className : 'span7 offset1',
+		itemView : Home.NewsItemCommentView, 
+		itemViewContainer : '#comments-list', 
+		model : new Home.NewsItem(), //
+		// collection : new Home.NewsComments(), 
+		ui : { textInput : '#textInput' }, 
+		events : { 'click #submit' : 'addComment' },
 		addComment : function() {
-			this.model.get('comments').add({author:{name:'', id:''}, comment: this.ui.textInput.val().trim(), timestring : now()});
+			var comments = this.model.get('comments');
+			console.log('comment detected', this.model);
+			var comment = this.ui.textInput.val().trim();
+			comments.add({author:{name:'', id:''}, 'comment' : comment, timestring : (new Date()).toUTCString()});
 			this.model.save();
-	}	});
+			this.render();
+			console.log('comment saved, supposedly', this.model);
+		},
+		onRender : function() { console.log('init', this.model);
+			$('#submit').click(this.addComment);
+			that = this;
+			this.model.fetch({'success' : function() {
+				console.log('after', that.model);
+				that.collection = that.model.get('comments');
+				// that.render();
+			}})
+		}
+	});
 	//compact view that links to full view
-	Home.NewsItemCompactView = Backbone.Marionette.ItemView.extend({ tagName : 'li', template : '#template-home-newsItemCompactView', events : { 'click' : 'loadNews'}, loadNews : function(e) { e.preventDefault(); console.log("here"); App.vent.trigger('route:news', this.model.get('id')); }});
+	Home.NewsItemCompactView = Backbone.Marionette.ItemView.extend({ tagName : 'li', template : '#template-home-newsItemCompactView', events : { 'click' : 'loadNews'}, loadNews : function(e) { e.preventDefault(); console.log("here", this.model); App.vent.trigger('route:news', this.model); }});
 
 	Home.NewsItemTinyView = Home.NewsItemCompactView.extend({template : '#template-home-newsItemTinyView'});
 
@@ -40,7 +73,7 @@ Ponder.module('Pages.Home', function(Home, App, Backbone, Marionette, $, _){
     collectionView.$el.find(this.itemViewContainer).prepend(itemView.el);
   }});
 
-	Home.View = Backbone.Marionette.Layout.extend({ regions : { main : '#home-main', archives : '#home-archives'}, tagname : 'div', className : 'container', template : '#template-home', onRender : function() { this.main.show(new Home.Main()); this.archives.show(new Home.Archives()); } });
+	Home.View = Backbone.Marionette.Layout.extend({ regions : { main : '#home-main', archives : '#home-archives'}, tagname : 'div', className : 'container', template : '#template-home', onRender : function() { this.main.show(new Home.Main()); this.archives.show(new Home.Archives()); }, initialize : function() { var that = this; App.vent.on('route:news', function(model) { console.log('heard ', that); that.main.show(new Home.NewsItemView({'model' : model})); }); } });
 
 
 });

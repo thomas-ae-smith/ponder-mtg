@@ -1,15 +1,7 @@
 Ponder.module('Pages', function(Pages, App, Backbone, Marionette, $, _){
 
-	Backbone.Marionette.ItemView.prototype.show = function() {
-		this.region.show(this);
-	};
-
 	Pages.Header = Backbone.Marionette.ItemView.extend({
-		template : '#template-header',
-		tagName : 'div',
-		className : "hero-unit",
-		region : App.header,
-		initialize : function() {
+		template : '#template-header', tagName : 'div', className : "hero-unit", initialize : function() {
 			back = function() { $('body').animate({'margin-top' : '0px'}); $('#main').removeClass('expand');};
 			App.vent.on('route:home', back);
 			App.vent.on('route:profile', function() { $('body').animate({'margin-top' : '0px'}); });
@@ -22,15 +14,13 @@ Ponder.module('Pages', function(Pages, App, Backbone, Marionette, $, _){
 		}
 	});
 
-	Pages.Footer = Backbone.Marionette.ItemView.extend({
-		template : '#template-footer',
-		region : App.footer,
-	});
+	// Pages.Footer = Backbone.Marionette.ItemView.extend({
+	// 	template : '#template-footer',
+	// 	region : App.footer,
+	// });
 
 	Pages.NavBar = Backbone.Marionette.ItemView.extend({
-		tagName : 'ul',
-		template : '#template-navbar',
-		// region : App.navbar,
+		tagName : 'ul', template : '#template-navbar',
 		ui : {
 			home : '#home',
 			login : '#login',
@@ -48,13 +38,10 @@ Ponder.module('Pages', function(Pages, App, Backbone, Marionette, $, _){
 			'mousover #library' : 'mouseOver'
 		},
 		toggleProfile : function() {
-			console.log(this.ui);
-			// this.el.('#home').hide();
 			this.ui.login.hide();
 			this.ui.profile.removeClass('hidden');
 		},
 		initialize : function() {
-			// this.$el.next().mouseover(function() {console.log('alert!')});
 			App.vent.on('login', this.toggleProfile, this);
 			FB.init({
 				appId      : '249511971845829', // App ID from the App Dashboard
@@ -111,8 +98,8 @@ Ponder.module('Pages', function(Pages, App, Backbone, Marionette, $, _){
 	Pages.showEditor = function() { console.log('showE');/*App.main.show(new Pages.Editor.View()); */};
 
 	Pages.show = function (argument) {
-		(new Pages.Header()).show();
-		(new Pages.Footer()).show();
+		App.header.show(new Pages.Header());
+		// (new Pages.Footer()).show();
 		App.navbar.show(new Pages.NavBar());
 		App.main.show(new Pages.Home.View());
 	}

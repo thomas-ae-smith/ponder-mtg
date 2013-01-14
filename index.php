@@ -20,8 +20,8 @@ $scripts = array_merge(array('js/Ponder.js'), glob("js/*.*.js"));
 	<div id="navbar" class="nav container"></div>
 	<hr>
 	<div id="main"></div>
-	<hr>
-	<footer id="footer" class="container"></footer>
+	<!-- <hr>
+	<footer id="footer" class="container"></footer> -->
 	<div id="templates">
 		<?php $paths = glob(__DIR__ . "/templates/*.html"); foreach ($paths as $filename) { include $filename; } ?>
 	</div>
